@@ -1,0 +1,39 @@
+.category-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.category-table th, .category-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.category-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+.category-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.action-links a {
+    text-decoration: none;
+    color: #0066cc;
+    margin-right: 10px;
+}
+.action-links a:hover {
+    text-decoration: underline;
+}
+.category-form input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+}
+.category-form input[type="submit"] {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.category-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
