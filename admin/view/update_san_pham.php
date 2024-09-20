@@ -15,6 +15,16 @@
         </div>
 
         <div class="form-group">
+            <label for="so_luong_hang">Số lượng hàng:</label>
+            <input type="number" class="form-control" id="so_luong_hang" name="so_luong_hang" value="<?php echo $sp['so_luong_hang']; ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="mo_ta_sp">Mô tả sản phẩm:</label>
+            <textarea class="form-control" id="mo_ta_sp" name="mo_ta_sp" rows="10" cols="50"><?php echo $sp['mo_ta_sp']; ?></textarea>
+        </div>
+
+        <div class="form-group">
             <label for="id_dm">Danh mục:</label>
             <select class="form-control" id="id_dm" name="id_dm">
                 <?php foreach ($dsdm as $dm): ?>
@@ -29,13 +39,15 @@
             <label for="imgs">Hình ảnh:</label>
             <input type="file" class="form-control-file" id="imgs" name="imgs">
             <?php if (!empty($sp['images'])): ?>
-                <img src="<?php echo $sp['images']; ?>" alt="Current Image" class="img-thumbnail mt-2" style="max-width: 200px;">
+                <img src="<?php echo $sp['images']; ?>" alt="Current Image" class="img-thumbnail mt-2" style="max-width: 300px;">
             <?php endif; ?>
         </div>
 
         <button type="submit" name="update" class="btn btn-primary">Cập nhật</button>
     </form>
 </div>
+
+
 
 <?php
     echo '</div>'; // Đóng container-fluid từ header

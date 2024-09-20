@@ -76,6 +76,8 @@ if (isset($_GET['act'])) {
             $ten_sp = $_POST['ten_sp'];
             $gia = $_POST['gia'];
             $id_danh_muc = $_POST['id_dm'];
+            $mo_ta_sp = $_POST['mo_ta_sp'];
+            $so_luong_hang = $_POST['so_luong_hang'];
                     
             $images = "";
             if(isset($_FILES['imgs']) && $_FILES['imgs']['error'] == 0) {
@@ -86,7 +88,7 @@ if (isset($_GET['act'])) {
                 }
             }
                     
-            insert_product($id_danh_muc, $ten_sp, $gia, $images);
+            insert_product($id_danh_muc, $ten_sp, $gia, $so_luong_hang, $mo_ta_sp, $images);
             header("Location: index.php?act=san_pham");
             }
             break;
@@ -104,6 +106,8 @@ if (isset($_GET['act'])) {
                 $ten_sp = $_POST['ten_sp'];
                 $gia = $_POST['gia'];
                 $id_danh_muc = $_POST['id_dm'];
+                $mo_ta_sp = $_POST['mo_ta_sp'];
+                $so_luong_hang = $_POST['so_luong_hang'];
                 
                 $images = "";
                 if(isset($_FILES['imgs']) && $_FILES['imgs']['error'] == 0) {
@@ -114,7 +118,7 @@ if (isset($_GET['act'])) {
                     }
                 }
                 
-                update_product($id, $ten_sp, $images, $gia, $id_danh_muc);
+                update_product($id, $ten_sp, $gia, $so_luong_hang, $mo_ta_sp, $id_danh_muc, $images = "");
                 header("Location: index.php?act=san_pham");
             }
             break;
