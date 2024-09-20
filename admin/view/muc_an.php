@@ -1,51 +1,55 @@
+<h1 class="mb-5">Các mục đã ẩn</h1>
 
-<h1>Các mục đã ẩn</h1>
+<h3 class="mt-5 mb-4">Danh mục đã ẩn</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr class="text-center">
+                <th style="width: 10%;">ID</th>
+                <th style="width: 40%;">Tên danh mục</th>
+                <th style="width: 20%;">Danh mục gốc</th>
+                <th style="width: 30%;">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($hidden_categories as $dm): ?>
+            <tr class="text-center">
+                <td class="align-middle"><?php echo $dm['id']; ?></td>
+                <td class="align-middle text-left"><?php echo $dm['ten_danh_muc']; ?></td>
+                <td class="align-middle"><?php echo $dm['parent_id']; ?></td>
+                <td class="align-middle">
+                    <a href="index.php?act=restore_category&id=<?php echo $dm['id']; ?>" class="btn btn-sm btn-success w-25" onclick="return confirm('Bạn có chắc muốn khôi phục danh mục này?')">Khôi phục</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
-<h3>Danh mục đã ẩn</h3>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tên danh mục</th>
-            <th>Danh mục gốc</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($hidden_categories as $dm): ?>
-        <tr>
-            <td><?php echo $dm['id']; ?></td>
-            <td><?php echo $dm['ten_danh_muc']; ?></td>
-            <td><?php echo $dm['parent_id']; ?></td>
-            <td>
-                <a href="index.php?act=restore_category&id=<?php echo $dm['id']; ?>" class="btn btn-sm btn-success" onclick="return confirm('Bạn có chắc muốn khôi phục danh mục này?')">Khôi phục</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+<hr class="my-5">
 
-<h3>Sản phẩm đã ẩn</h3>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($hidden_products as $sp): ?>
-        <tr>
-            <td><?php echo $sp['id']; ?></td>
-            <td><?php echo $sp['ten_sp']; ?></td>
-            <td><?php echo number_format($sp['gia'], 0, ',', '.'); ?> đ</td>
-            <td>
-                <a href="index.php?act=restore_product&id=<?php echo $sp['id']; ?>" class="btn btn-sm btn-success" onclick="return confirm('Bạn có chắc muốn khôi phục sản phẩm này?')">Khôi phục</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-
+<h3 class="mt-5 mb-4">Sản phẩm đã ẩn</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr class="text-center">
+                <th style="width: 10%;">ID</th>
+                <th style="width: 40%;">Tên sản phẩm</th>
+                <th style="width: 20%;">Giá</th>
+                <th style="width: 30%;">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($hidden_products as $sp): ?>
+            <tr class="text-center">
+                <td class="align-middle"><?php echo $sp['id']; ?></td>
+                <td class="align-middle text-left"><?php echo $sp['ten_sp']; ?></td>
+                <td class="align-middle"><?php echo number_format($sp['gia'], 0, ',', '.'); ?> đ</td>
+                <td class="align-middle">
+                    <a href="index.php?act=restore_product&id=<?php echo $sp['id']; ?>" class="btn btn-sm btn-success w-25" onclick="return confirm('Bạn có chắc muốn khôi phục sản phẩm này?')">Khôi phục</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

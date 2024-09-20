@@ -43,8 +43,8 @@
                                     <td class="align-middle col-2">'.$dm['parent_id'].'</td>
                                     <td class="align-middle col-4">
                                         <div class="d-flex flex-column align-items-center">
-                                            <a href="index.php?act=update_category&id='.$dm['id'].'" class="btn btn-sm btn-warning mb-2 ">Sửa</a>
-                                            <a href="index.php?act=delete_category&id='.$dm['id'].'" class="btn btn-sm btn-danger " onclick="return confirm(\'Khi xóa bạn cần chắc chắn danh mục không còn chứa DỮ LIỆU SẢN PHẨM. Bạn có chắc muốn xóa danh mục này?\')">Xóa</a>
+                                            <a href="index.php?act=update_category&id='.$dm['id'].'" class="btn btn-sm btn-warning mb-2 w-25">Sửa</a>
+                                            <a href="index.php?act=delete_category&id='.$dm['id'].'" class="btn btn-sm btn-danger w-25" onclick="return confirm(\'Khi xóa bạn cần chắc chắn danh mục không còn chứa DỮ LIỆU SẢN PHẨM. Bạn có chắc muốn xóa danh mục này?\')">Xóa</a>
                                         </div>
                                     </td>
                                   </tr>';
