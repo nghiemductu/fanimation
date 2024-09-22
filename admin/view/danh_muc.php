@@ -50,8 +50,8 @@
                                     <td class="align-middle text-left col-7">'.str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $level).$dm['ten_danh_muc'].'</td>
                                     <td class="align-middle">
                                         <div class="flex-column align-items-center">
-                                            <a href="index.php?act=update_category&id='.$dm['id'].'" class="btn btn-sm btn-warning mr-2 w-25">Sửa</a>
-                                            <a href="index.php?act=delete_category&id='.$dm['id'].'" class="btn btn-sm btn-danger w-25" onclick="return confirm(\'Khi xóa bạn cần chắc chắn danh mục không còn chứa DỮ LIỆU SẢN PHẨM. Bạn có chắc muốn xóa danh mục này?\')">Xóa</a>
+                                            <a href="index.php?act=update_category&id='.$dm['id'].'" class="btn btn-sm btn-warning mr-2 w-10">Sửa</a>
+                                            <a href="index.php?act=delete_category&id='.$dm['id'].'" class="btn btn-sm btn-danger w-10" onclick="return confirm(\'Khi xóa bạn cần chắc chắn danh mục không còn chứa DỮ LIỆU SẢN PHẨM. Bạn có chắc muốn xóa danh mục này?\')">Xóa</a>
                                         </div>
                                     </td>
                                      <td class="align-middle">

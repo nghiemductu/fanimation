@@ -71,8 +71,8 @@
 
                         <td class="align-middle">
                             <div class="d-flex flex-column align-items-center">
-                                <a href="index.php?act=update_san_pham&id='.$item['id'].'" class="btn btn-sm btn-warning mb-2 w-100">Sửa</a>
-                                <a href="index.php?act=delete_product&id='.$item['id'].'" class="btn btn-sm btn-danger w-100" onclick="return confirm(\'Bạn có chắc muốn ẩn sản phẩm này?\')">Ẩn</a>
+                                <a href="index.php?act=update_san_pham&id='.$item['id'].'" class="btn btn-sm btn-warning mb-2 w-50">Sửa</a>
+                                <a href="index.php?act=delete_product&id='.$item['id'].'" class="btn btn-sm btn-danger w-50" onclick="return confirm(\'Bạn có chắc muốn ẩn sản phẩm này?\')">Ẩn</a>
                             </div>
                         </td>
                       </tr>';
