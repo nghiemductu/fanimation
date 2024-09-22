@@ -28,6 +28,7 @@
     <div class="form-group mb-3">
         <textarea class="form-control" name="mo_ta_sp" placeholder="Mô tả sản phẩm" rows="10" cols="50"></textarea>
     </div>
+                    
     <div class="form-group">
         <button type="submit" name="add_new" class="btn btn-primary">Thêm mới</button>
     </div>

@@ -5,16 +5,17 @@
     <table class="table table-striped">
         <thead>
             <tr class="text-center">
-                <th style="width: 10%;">ID</th>
+                <th style="width: 10%;">STT</th>
                 <th style="width: 40%;">Tên danh mục</th>
                 <th style="width: 20%;">Danh mục gốc</th>
                 <th style="width: 30%;">Hành động</th>
             </tr>
         </thead>
         <tbody>
+            <?php $stt_category = 1; ?>
             <?php foreach ($hidden_categories as $dm): ?>
             <tr class="text-center">
-                <td class="align-middle"><?php echo $dm['id']; ?></td>
+                <td class="align-middle"><?php echo $stt_category++; ?></td>
                 <td class="align-middle text-left"><?php echo $dm['ten_danh_muc']; ?></td>
                 <td class="align-middle"><?php echo $dm['parent_id']; ?></td>
                 <td class="align-middle">
@@ -33,16 +34,17 @@
     <table class="table table-striped">
         <thead>
             <tr class="text-center">
-                <th style="width: 10%;">ID</th>
+                <th style="width: 10%;">STT</th>
                 <th style="width: 40%;">Tên sản phẩm</th>
                 <th style="width: 20%;">Giá</th>
                 <th style="width: 30%;">Hành động</th>
             </tr>
         </thead>
         <tbody>
+            <?php $stt_product = 1; ?>
             <?php foreach ($hidden_products as $sp): ?>
             <tr class="text-center">
-                <td class="align-middle"><?php echo $sp['id']; ?></td>
+                <td class="align-middle"><?php echo $stt_product++; ?></td>
                 <td class="align-middle text-left"><?php echo $sp['ten_sp']; ?></td>
                 <td class="align-middle"><?php echo number_format($sp['gia'], 0, ',', '.'); ?> đ</td>
                 <td class="align-middle">

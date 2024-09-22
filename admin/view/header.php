@@ -6,7 +6,6 @@
     <title>Responsive Navbar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <link rel="stylesheet" href="css/san_pham.css"> -->
    
 </head>
 <body>

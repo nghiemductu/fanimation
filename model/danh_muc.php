@@ -1,13 +1,19 @@
 <?php
 function getall_dm() {
     $conn = connect_db();
-    $sql = "SELECT * FROM category WHERE hien_thi_dm = 1 ORDER BY parent_id, id";
+    $sql = "SELECT *, 
+            CASE 
+                WHEN parent_id = 0 OR parent_id IS NULL THEN 0 
+                ELSE 1 
+            END AS level 
+            FROM category 
+            WHERE hien_thi_dm = 1 
+            ORDER BY parent_id, id";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $kq = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $kq;
 }
-
 
 function add_category($ten_danh_muc, $parent_id) {
     $conn = connect_db();
@@ -53,7 +59,6 @@ function restore_category($id) {
     $stmt->execute();
 }
 
-// Thêm hàm mới để lấy danh sách các danh mục đã ẩn
 function get_hidden_categories() {
     $conn = connect_db();
     $sql = "SELECT * FROM category WHERE hien_thi_dm = 0 ORDER BY parent_id, id";
@@ -64,12 +69,9 @@ function get_hidden_categories() {
 
 function count_danh_muc() {
     $conn = connect_db();
-    $sql = "SELECT COUNT(*) as total FROM danh_muc";
+    $sql = "SELECT COUNT(*) as total FROM category WHERE hien_thi_dm = 1";
     $stmt = $conn->query($sql);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result['total'];
 }
-
-
-
 ?>

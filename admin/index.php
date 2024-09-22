@@ -5,7 +5,6 @@ include "../model/connect_db.php";
 include "../model/danh_muc.php";  
 include "../model/san_pham.php";      
 connect_db();  
-
 include "view/header.php";
 
 if (isset($_GET['act'])) {
@@ -48,22 +47,6 @@ if (isset($_GET['act'])) {
             header("Location: index.php?act=danh_muc");
             break;
 
-        case 'update_category':
-           
-            if(isset ($_GET['id'])) {
-                $id=$_GET ['id'];
-                $kq1=get_category($id);
-                $kq =getall_dm();
-                include "view/update_category.php";   
-            }
-            if(isset ($_POST['id'])) {
-                $id=$_POST ['id'];
-                $ten_danh_muc = $_POST['ten_danh_muc'];
-                update_category($id, $ten_danh_muc, $parent_id);
-                $kq=getall_dm();
-                include "view/danh_muc.php";
-            }
-            break;
 
         case 'san_pham':
             $dsdm=getall_dm();
