@@ -1,0 +1,22 @@
+.thumbnail-small {
+    width: 80px;
+    height: 80px;
+    margin-right: 5px;
+}
+.similar-product img {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+}
+
+.stock-status {
+    padding: 10px 15px;
+    background-color: #28a745; /* Màu xanh lá cây cho trạng thái còn hàng */
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.product-image-container {
+    position: relative;
+}

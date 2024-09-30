@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .checkout-header h1 {
+            font-size: 32px;
+            margin: 0;
+        }
+
+        .checkout-header span {
+            font-size: 18px;
+            color: gray;
+        }
+
+        .checkout-content {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .contact-section, .cart-summary {
+            width: 48%;
+        }
+
+        .contact-section h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .payment-options img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .cart-summary h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .cart-summary p, .cart-summary h3 {
+            margin: 5px 0;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .product-item img {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .product-info p {
+            margin: 5px 0;
+        }
+
+        .promo-code-link {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h1>CHECKOUT</h1>
+            <span>(1 item) 2,720,000đ</span>
+        </div>
+
+        <div class="checkout-content">
+            <div class="contact-section">
+                <h2>Contact</h2>
+                <div class="input-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" placeholder="Enter your email address">
+                    <span class="error-message">Please enter your email address.</span>
+                </div>
+
+                <h2>Address</h2>
+                <div class="input-group">
+                    <label for="address">Shipping Address *</label>
+                    <input type="text" id="address" placeholder="Enter your address">
+                </div>
+                <div class="input-group">
+                    <label for="city">City *</label>
+                    <input type="text" id="city" placeholder="Enter your city">
+                </div>
+                <div class="input-group">
+                    <label for="zipcode">Postal Code *</label>
+                    <input type="text" id="zipcode" placeholder="Enter your postal code">
+                </div>
+
+                <h2>Delivery Options</h2>
+                <div class="input-group">
+                    <label for="delivery-option">Select Delivery Option *</label>
+                    <select id="delivery-option">
+                        <option value="free">Standard Delivery - Free</option>
+                        <option value="express">Express Delivery - 50,000đ</option>
+                    </select>
+                </div>
+
+                <h2>Payment</h2>
+                <div class="input-group">
+                    <label for="card-number">Card Number *</label>
+                    <input type="text" id="card-number" placeholder="Enter your card number">
+                </div>
+                <div class="input-group">
+                    <label for="expiry-date">Expiry Date *</label>
+                    <input type="text" id="expiry-date" placeholder="MM/YY">
+                </div>
+                <div class="input-group">
+                    <label for="cvc">CVC *</label>
+                    <input type="text" id="cvc" placeholder="CVC">
+                </div>
+
+                <div class="payment-options">
+                    <img src="mastercard.png" alt="MasterCard">
+                    <img src="visa.png" alt="Visa">
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <h2>Your Cart</h2>
+                <p>1 item</p>
+                <p>Original price: 3,200,000đ</p>
+                <p>Delivery: Free</p>
+                <p>On Sale: -480,000đ</p>
+                <h3>Total: 2,720,000đ</h3>
+                <p>(Inclusive of tax 201,481đ)</p>
+                <a href="#" class="promo-code-link">Use a promo code</a>
+                
+                <div class="product-item">
+                    <img src="shoe-image.jpg" alt="Supernova Stride Move">
+                    <div class="product-info">
+                        <p>Supernova Stride Move for...</p>
+                        <p>Size: 6 UK / Quantity: 1</p>
+                        <p>Color: Beige / Green Spark / Oat</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2024 adidas Vietnam Company Limited</p>
+            <p>Mon to Sat (excluding Sunday, Christmas & New Year): 9am to 9pm</p>
+        </footer>
+    </div>
+</body>
+</html>
