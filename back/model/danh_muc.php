@@ -67,3 +67,36 @@ function get_hidden_categories() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function get_categories_hierarchical() {
+    $categories = getall_dm();
+    $tree = [];
+    foreach ($categories as $category) {
+        $category['children'] = [];
+        if (!$category['parent_id']) {
+            $tree[$category['id']] = $category;
+        } else {
+            $parent = &find_parent($tree, $category['parent_id']);
+            if ($parent) {
+                $parent['children'][$category['id']] = $category;
+            }
+        }
+    }
+    return $tree;
+}
+
+function &find_parent(&$categories, $parent_id) {
+    foreach ($categories as &$category) {
+        if ($category['id'] == $parent_id) {
+            return $category;
+        }
+        if ($category['children']) {
+            $result = &find_parent($category['children'], $parent_id);
+            if ($result) {
+                return $result;
+            }
+        }
+    }
+    $result = null;
+    return $result;
+}
+

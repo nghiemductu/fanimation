@@ -63,14 +63,13 @@ if (isset($_GET['act'])) {
 
         case 'san_pham':
             $dsdm = getall_dm();
-            $limit = 1; // Số sản phẩm trên mỗi trang
-            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-            $start = ($page - 1) * $limit;
-    
-            $total_products = count_san_pham();
-            $total_pages = ceil($total_products / $limit);
+            $items_per_page = 10; 
+            $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $total_items = count_san_pham();
+            $total_pages = ceil($total_items / $items_per_page);
+            $start = ($current_page - 1) * $items_per_page;
             
-            $kq = get_products_paginated($start, $limit);
+            $kq = get_products_paginated($start, $items_per_page);
             include "view/san_pham.php";
             break;
         

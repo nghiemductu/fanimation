@@ -77,43 +77,43 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-            if(isset($kq) && (count($kq) > 0)){
-                $i = 1;
-                foreach ($kq as $item){
-                    $ten_danh_muc = '';
-                    foreach ($dsdm as $dm) {
-                        if ($dm['id'] == $item['id_danh_muc']) {
-                            $ten_danh_muc = $dm['ten_danh_muc'];
-                            break;
-                        }
-                    }
-                    echo '<tr class="text-center">
-                            <td class="align-middle">'.$i.'</td>
-                            <td class="align-middle">'.$item['ten_sp'].'</td>
-                            <td class="align-middle">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#imageModal'.$item['id'].'">
-                                    Xem ảnh
-                                </button>
-                            </td>
-                            <td class="align-middle">'.$ten_danh_muc.'</td>
-                            <td class="align-middle">'.number_format($item['gia'], 0, ',', '.').' đ</td>
-                            <td class="align-middle">'.$item['so_luong_hang'].'</td>
-                            <td class="align-middle">'.substr($item['mo_ta_sp'], 0, 50).'...</td>
-                            <td class="align-middle">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#specModal'.$item['id'].'">
-                                    Xem chi tiết
-                                </button>
-                            </td>
-                            <td class="align-middle">'.$item['ngay_dang'].'</td>
-                            <td class="align-middle">
-                                <div class="d-flex flex-column align-items-center">
-                                    <a href="index.php?act=update_san_pham&id='.$item['id'].'" class="btn btn-sm btn-warning mb-2 w-25">Sửa</a>
-                                    <a href="index.php?act=delete_product&id='.$item['id'].'" class="btn btn-sm btn-danger w-25" onclick="return confirm(\'Bạn có chắc muốn ẩn sản phẩm này?\')">Ẩn</a>
-                                </div>
-                            </td>
-                          </tr>';
-                    $i++;
+    <?php
+    if(isset($kq) && (count($kq) > 0)){
+        $start_index = ($current_page - 1) * $items_per_page;
+        foreach ($kq as $index => $item){
+            $stt = $start_index + $index + 1;
+            $ten_danh_muc = '';
+            foreach ($dsdm as $dm) {
+                if ($dm['id'] == $item['id_danh_muc']) {
+                    $ten_danh_muc = $dm['ten_danh_muc'];
+                    break;
+                }
+            }
+            echo '<tr class="text-center">
+                        <td class="align-middle">'.$stt.'</td>
+                        <td class="align-middle">'.$item['ten_sp'].'</td>
+                        <td class="align-middle">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#imageModal'.$item['id'].'">
+                                Xem ảnh
+                            </button>
+                        </td>
+                        <td class="align-middle">'.$ten_danh_muc.'</td>
+                        <td class="align-middle">'.number_format($item['gia'], 0, ',', '.').' đ</td>
+                        <td class="align-middle">'.$item['so_luong_hang'].'</td>
+                        <td class="align-middle">'.substr($item['mo_ta_sp'], 0, 50).'...</td>
+                        <td class="align-middle">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#specModal'.$item['id'].'">
+                                Xem chi tiết
+                            </button>
+                        </td>
+                        <td class="align-middle">'.$item['ngay_dang'].'</td>
+                        <td class="align-middle">
+                            <div class="d-flex flex-column align-items-center">
+                                <a href="index.php?act=update_san_pham&id='.$item['id'].'" class="btn btn-sm btn-warning mb-2 w-25">Sửa</a>
+                                <a href="index.php?act=delete_product&id='.$item['id'].'" class="btn btn-sm btn-danger w-25" onclick="return confirm(\'Bạn có chắc muốn ẩn sản phẩm này?\')">Ẩn</a>
+                            </div>
+                        </td>
+                  </tr>';
                 }
             }
             ?>
@@ -192,9 +192,10 @@
     ?>
 </div>
 <!-- Pagination -->
+
 <?php
     require_once 'pagination.php';
-    echo renderPagination($page, $total_pages, '?act=san_pham&page=%d');
+    echo renderPagination($current_page, $total_pages, '?act=san_pham&page=%d');
 ?>
 
 <!-- <script src="public/JS/back_product.js"></script> -->
