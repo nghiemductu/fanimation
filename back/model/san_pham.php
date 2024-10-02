@@ -1,12 +1,12 @@
 <?php
-    function insert_product($id_danh_muc, $ten_sp, $gia, $so_luong_hang, $mo_ta_sp, $images, $cong_suat, $cong_nghe, $chat_lieu, $chuc_nang, $so_canh, $toc_do){
+    function insert_product($id_danh_muc, $ten_sp, $gia, $so_luong_hang, $mo_ta_sp, $images, $cong_suat, $cong_nghe, $chat_lieu, $chuc_nang, $so_canh, $toc_do, $new_arrival, $featured, $best_seller) {
         $conn = connect_db();
         $stmt = $conn->prepare("SELECT * FROM category WHERE id = ?");
         $stmt->execute([$id_danh_muc]);
         $category = $stmt->fetch();
         if ($category) {
-            $sql = "INSERT INTO products (id_danh_muc, ten_sp, gia, so_luong_hang, mo_ta_sp, images, cong_suat, cong_nghe, chat_lieu, chuc_nang, so_canh, toc_do) 
-                    VALUES (:id_danh_muc, :ten_sp, :gia, :so_luong_hang, :mo_ta_sp, :images, :cong_suat, :cong_nghe, :chat_lieu, :chuc_nang, :so_canh, :toc_do)";
+            $sql = "INSERT INTO products (id_danh_muc, ten_sp, gia, so_luong_hang, mo_ta_sp, images, cong_suat, cong_nghe, chat_lieu, chuc_nang, so_canh, toc_do, new_arrival, featured, best_seller) 
+                    VALUES (:id_danh_muc, :ten_sp, :gia, :so_luong_hang, :mo_ta_sp, :images, :cong_suat, :cong_nghe, :chat_lieu, :chuc_nang, :so_canh, :toc_do, :new_arrival, :featured, :best_seller)";
             $stmt = $conn->prepare($sql);
             $stmt->execute([
                 ':id_danh_muc' => $id_danh_muc,
@@ -20,7 +20,10 @@
                 ':chat_lieu' => $chat_lieu,
                 ':chuc_nang' => $chuc_nang,
                 ':so_canh' => $so_canh,
-                ':toc_do' => $toc_do
+                ':toc_do' => $toc_do,
+                ':new_arrival' => $new_arrival,
+                ':featured' => $featured,
+                ':best_seller' => $best_seller
             ]);
         } else {
             echo "Lỗi: Danh mục không tồn tại.";
@@ -44,18 +47,20 @@
         return $kq;
     }
 
-    function update_product($id, $ten_sp, $gia, $so_luong_hang, $mo_ta_sp, $id_danh_muc, $cong_suat, $cong_nghe, $chat_lieu, $chuc_nang, $so_canh, $toc_do, $images = "") {
+    function update_product($id, $ten_sp, $gia, $so_luong_hang, $mo_ta_sp, $id_danh_muc, $cong_suat, $cong_nghe, $chat_lieu, $chuc_nang, $so_canh, $toc_do, $images = "", $new_arrival, $featured, $best_seller) {
         $conn = connect_db();
         if($images == "") {
             $sql = "UPDATE products SET ten_sp = :ten_sp, gia = :gia, so_luong_hang = :so_luong_hang, 
                     mo_ta_sp = :mo_ta_sp, id_danh_muc = :id_danh_muc, cong_suat = :cong_suat, 
                     cong_nghe = :cong_nghe, chat_lieu = :chat_lieu, chuc_nang = :chuc_nang, 
-                    so_canh = :so_canh, toc_do = :toc_do WHERE id = :id";
+                    so_canh = :so_canh, toc_do = :toc_do, new_arrival = :new_arrival, 
+                    featured = :featured, best_seller = :best_seller WHERE id = :id";
         } else {
             $sql = "UPDATE products SET ten_sp = :ten_sp, gia = :gia, so_luong_hang = :so_luong_hang, 
                     mo_ta_sp = :mo_ta_sp, id_danh_muc = :id_danh_muc, cong_suat = :cong_suat, 
                     cong_nghe = :cong_nghe, chat_lieu = :chat_lieu, chuc_nang = :chuc_nang, 
-                    so_canh = :so_canh, toc_do = :toc_do, images = :images WHERE id = :id";
+                    so_canh = :so_canh, toc_do = :toc_do, images = :images, 
+                    new_arrival = :new_arrival, featured = :featured, best_seller = :best_seller WHERE id = :id";
         }
         
         $stmt = $conn->prepare($sql);
@@ -70,10 +75,14 @@
         $stmt->bindParam(':chuc_nang', $chuc_nang);
         $stmt->bindParam(':so_canh', $so_canh);
         $stmt->bindParam(':toc_do', $toc_do);
+        $stmt->bindParam(':new_arrival', $new_arrival);
+        $stmt->bindParam(':featured', $featured);
+        $stmt->bindParam(':best_seller', $best_seller);
         $stmt->bindParam(':id', $id);
         if($images != "") {
             $stmt->bindParam(':images', $images);
         }
+        
         $stmt->execute();
     }
 

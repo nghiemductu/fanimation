@@ -19,8 +19,8 @@
     <link href="https://db.onlinewebfonts.com/c/b82329475307e0380dc1ea23f0c35266?family=adineue+PRO" rel="stylesheet" type="text/css"/>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/public/css/code1.css">
-    <link rel="stylesheet" href="/public/css/code2.css">
+    <link rel="stylesheet" href="http://localhost/fanimation/public/css/code1.css">
+    <link rel="stylesheet" href="http://localhost/fanimation/public/css/code2.css">
     
     <style>
     .dropdown-submenu {

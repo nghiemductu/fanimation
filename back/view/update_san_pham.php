@@ -65,6 +65,12 @@
                 <input type="text" class="form-control" id="toc_do" name="toc_do" value="<?php echo htmlspecialchars($sp['toc_do']); ?>">
             </div>
         </div>
+
+        <div class="text-center mb-3">
+            <label class="me-5"><input type="checkbox" name="new_arrival" value="1" <?php echo $sp['new_arrival'] ? 'checked' : ''; ?>> New Arrivals</label>
+            <label class="me-5"><input type="checkbox" name="featured" value="1" <?php echo $sp['featured'] ? 'checked' : ''; ?>> Featured Products</label>
+            <label class="me-5"><input type="checkbox" name="best_seller" value="1" <?php echo $sp['best_seller'] ? 'checked' : ''; ?>> Best Sellers</label>
+        </div>
         
         <div class="row justify-content-center">
             <div class="col-md-3 mb-3">
@@ -108,35 +114,4 @@
         </div>
     </form>
 </div>
-<!-- <script src="public/JS/back_product.js"></script> -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var form = document.getElementById('updateProductForm');
-    var fileInput = form.querySelector('input[type="file"]');
-
-    form.addEventListener('submit', function(e) {
-        if (fileInput.files.length > 6) {
-            e.preventDefault();
-            alert('Bạn chỉ được chọn tối đa 6 ảnh.');
-        }
-    });
-
-    fileInput.addEventListener('change', function() {
-        if (this.files.length > 6) {
-            alert('Bạn chỉ được chọn tối đa 6 ảnh.');
-            this.value = ''; // Reset input
-            return;
-        }
-
-        // Kiểm tra định dạng file
-        var validTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        for (var i = 0; i < this.files.length; i++) {
-            if (!validTypes.includes(this.files[i].type)) {
-                alert('Chỉ chấp nhận file ảnh có định dạng jpg, jpeg, png hoặc gif.');
-                this.value = ''; // Reset input
-                break;
-            }
-        }
-    });
-});
-</script>
+<script src="http://localhost/fanimation/public/JS/back_product.js"></script>

@@ -1,41 +1,37 @@
 <?php
-$error = '';
-$success = '';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $confirm_password = $_POST['confirm_password'] ?? '';
+    
+    $conn = connect_db();
 
-    if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
-        $error = "Vui lòng điền đầy đủ thông tin.";
-    } elseif ($password !== $confirm_password) {
-        $error = "Mật khẩu xác nhận không khớp.";
-    } else {
-        try {
-            
-            if (check_username_exists($username)) {
-                $error = "Tên đăng nhập đã tồn tại.";
-            } elseif (check_email_exists($email)) {
-                $error = "Email đã được sử dụng.";
-            } else {
-               
-                if (register_user($username, $email, $password)) {
-        
-                    header("Location: index.php?act=login");
-                    exit(); 
-                } else {
-                    $error = "Có lỗi xảy ra trong quá trình đăng ký.";
-                }
-            }
-        } catch(PDOException $e) {
-            $error = "Lỗi: " . $e->getMessage();
-        }
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+   
+    if ($password !== $confirm_password) {
+        die("Mật khẩu và xác nhận mật khẩu không khớp!");
     }
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    try {
+        $sql = "INSERT INTO user (user_name, email, password) VALUES (:username, :email, :password)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $hashed_password);
+
+        if ($stmt->execute()) {
+            echo "Đăng ký thành công!";
+        } else {
+            echo "Lỗi: " . $stmt->errorInfo()[2];
+        }
+    } catch(PDOException $e) {
+        echo "Lỗi: " . $e->getMessage();
+    }
+
+    $conn = null;
 }
 ?>
-
 
 
 <!DOCTYPE html>
@@ -49,34 +45,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="text-center">Đăng ký</h3>
                     </div>
                     <div class="card-body">
-                        <?php if (!empty($error)): ?>
+                        <?php if (isset($error)): ?>
                             <div class="alert alert-danger"><?php echo $error; ?></div>
                         <?php endif; ?>
-                        <?php if (!empty($success)): ?>
+                        <?php if (isset($success)): ?>
                             <div class="alert alert-success"><?php echo $success; ?></div>
                         <?php endif; ?>
-                        <form action="../index.php?act=register" method="post">
+                        <form action="index.php?act=register" method="post" id="registerForm">
                             <div class="mb-3">
-                                <label for="username" class="form-label">Tên đăng nhập</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" required>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Mật khẩu</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required>
                             </div>
                             <div class="mb-3">
-                                <label for="confirm_password" class="form-label">Xác nhận mật khẩu</label>
-                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Xác nhận mật khẩu" required>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">Đăng ký</button>
@@ -90,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

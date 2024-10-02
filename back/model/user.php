@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/fanimation/database/connect_db.php';
+// require_once $_SERVER['DOCUMENT_ROOT'] . '/fanimation/database/connect_db.php';
 
 function add_user($username, $password, $email) {
     $conn = connect_db();

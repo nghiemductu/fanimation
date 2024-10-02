@@ -1,5 +1,4 @@
 <h1 class="mb-4 text-center pt-4">Thêm Người Dùng Mới</h1>
-
 <div class="row justify-content-center">
     <div class="col-md-3">
         <?php if(isset($error)): ?>

@@ -10,25 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <style>
-        html, body {
-            height: 100%;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-            background-color: #f0f8ff;
-        }
-        .content {
-            flex: 1 0 auto;
-        }
-        .footer {
-            flex-shrink: 0;
-            background-color: #343a40;
-            color: white;
-            padding: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="http://localhost/fanimation/public/css/admin-style.css">
+   
 </head>
 <body>
     <header class="bg-primary text-white text-center py-3">
