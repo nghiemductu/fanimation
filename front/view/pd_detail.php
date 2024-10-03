@@ -25,15 +25,12 @@
             font-weight: bold;
             border-radius: 5px;
             font-size: 14px; /* Kích thước phông chữ */
-            
         }
 
         .btn-custom {
             font-size: 14px; /* Đặt cùng kích thước phông chữ với nút trạng thái */
             padding: 10px 15px; /* Giảm kích thước của nút "Thêm vào giỏ hàng" */
             font-weight: bold;
-            
-
         }
 
         .product-image-container {
@@ -44,65 +41,51 @@
 <body>
 
     <div class="container mt-5">
+        <?php
+        // Lấy thông tin sản phẩm từ ID
+            if (isset($product)) {
+                $images = json_decode($product['images'], true);
+                $first_image = $images[0] ?? '/img/default-product.jpg';
+        ?>
         <div class="row">
             <div class="col-md-8 product-image-container">
-                <img src="https://via.placeholder.com/800x400" class="img-fluid" alt="Product Image">
+                <img src="<?php echo $first_image; ?>" class="img-fluid" alt="<?php echo htmlspecialchars($product['ten_sp']); ?>">
                 
                 <div class="d-flex justify-content-start mt-5">
-                    <img src="https://via.placeholder.com/100x100" class="img-thumbnail" alt="Thumbnail 1">
-                    <img src="https://via.placeholder.com/100x100" class="img-thumbnail ms-2" alt="Thumbnail 2">
-                    <img src="https://via.placeholder.com/100x100" class="img-thumbnail ms-2" alt="Thumbnail 3">
-                    <img src="https://via.placeholder.com/100x100" class="img-thumbnail ms-2" alt="Thumbnail 4">
+                    <?php foreach ($images as $image): ?>
+                        <img src="<?php echo $image; ?>" class="img-thumbnail thumbnail-small" alt="<?php echo htmlspecialchars($product['ten_sp']); ?>">
+                    <?php endforeach; ?>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <h3>OUTDOOR ELEMENT II 24323</h3>
+                <h3><?php echo htmlspecialchars($product['ten_sp']); ?></h3>
+                <p class="price"><?php echo number_format($product['gia'], 0, ',', '.'); ?>₫</p>
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <th>Phong cách</th>
-                            <td>Nhiệt đới</td>
+                            <th>Performance</th>
+                            <td><?php echo htmlspecialchars($product['performance']); ?></td>
                         </tr>
                         <tr>
-                            <th>Phân loại</th>
-                            <td>Cao cấp</td>
+                            <th>Number of wings</th>
+                            <td><?php echo htmlspecialchars($product['number_of_wings']); ?></td>
                         </tr>
                         <tr>
-                            <th>Màu sắc</th>
-                            <td>Màu nâu đen (New Bronze)</td>
+                            <th>Technology</th>
+                            <td><?php echo htmlspecialchars($product['technology']); ?></td>
                         </tr>
                         <tr>
-                            <th>Động cơ</th>
-                            <td>AC Motor, công suất 100W</td>
+                            <th>Speed</th>
+                            <td><?php echo htmlspecialchars($product['speed']); ?></td>
                         </tr>
                         <tr>
-                            <th>Cánh quạt</th>
-                            <td>Cánh Composite 2 mặt Vân lá</td>
+                            <th>Material</th>
+                            <td><?php echo htmlspecialchars($product['material']); ?></td>
                         </tr>
                         <tr>
-                            <th>Độ nghiêng cánh quạt</th>
-                            <td>13°</td>
-                        </tr>
-                        <tr>
-                            <th>Lưu lượng gió</th>
-                            <td>6776 CFM</td>
-                        </tr>
-                        <tr>
-                            <th>Điều khiển</th>
-                            <td>Dây kéo</td>
-                        </tr>
-                        <tr>
-                            <th>Trọng lượng</th>
-                            <td>Đang cập nhật</td>
-                        </tr>
-                        <tr>
-                            <th>Khoảng cách từ cánh quạt tới trần</th>
-                            <td>Đang cập nhật</td>
-                        </tr>
-                        <tr>
-                            <th>Đèn</th>
-                            <td>Đang cập nhật</td>
+                            <th>Function</th>
+                            <td><?php echo htmlspecialchars($product['function']); ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -117,7 +100,7 @@
 
         <!-- Phần sản phẩm tương tự -->
         <div class="container mt-5">
-            <h4 class="text-center">SẢN PHẨM TƯƠNG TỰ</h4>
+            <h4 class="text-center">SẢN PHẨM TƯƠI TƯƠI</h4>
             <div class="row text-center mt-5">
                 <!-- Sản phẩm 1 -->
                 <div class="col-md-3 col-6">
@@ -147,23 +130,26 @@
                     <img src="https://via.placeholder.com/200" class="product-img" alt="HUNTER CLAUDETTE">
                     <p class="product-name">HUNTER CLAUDETTE</p>
                 </div>
-               
                 <div class="col-md-3 col-6">
                     <img src="https://via.placeholder.com/200" class="product-img" alt="HUNTER SAVOY 24520">
                     <p class="product-name">HUNTER SAVOY 24520</p>
                 </div>
-              
                 <div class="col-md-3 col-6">
                     <img src="https://via.placeholder.com/200" class="product-img" alt="HUNTER SEVILLE II 24038">
                     <p class="product-name">HUNTER SEVILLE II 24038</p>
                 </div>
-               
                 <div class="col-md-3 col-6">
                     <img src="https://via.placeholder.com/200" class="product-img" alt="HUNTER SAVOY 24525">
                     <p class="product-name">HUNTER SAVOY 24525</p>
                 </div>
             </div>
         </div>
+        <?php
+        } else {
+            echo "<p>Sản phẩm không tồn tại.</p>";
+        }
+        ?>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

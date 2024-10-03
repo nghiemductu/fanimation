@@ -1,6 +1,13 @@
 <h1 class="mb-5 text-center pt-4 ">Các mục đã ẩn</h1>
 
 <div class="container">
+    <?php if (isset($_SESSION['success'])): ?>
+        <script>
+            showSuccessAlert("Thành công!", "<?php echo $_SESSION['success']; ?>");
+        </script>
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
+
     <div class="w-75 mx-auto">
         <h3 class="mt-5 mb-4 pt-4">Danh mục đã ẩn</h3>
         <div class="table-responsive">
@@ -19,7 +26,7 @@
                         <td class="text-center align-middle"><?php echo $stt_category++; ?></td>
                         <td class="text-center align-middle"><?php echo $dm['ten_danh_muc']; ?></td>
                         <td class="text-center align-middle">
-                            <a href="index.php?act=restore_category&id=<?php echo $dm['id']; ?>" class="btn btn-sm btn-success" onclick="return confirm('Bạn có chắc muốn khôi phục danh mục này?')">Khôi phục</a>
+                            <a href="#" class="btn btn-sm btn-success" onclick="confirmRestore('index.php?act=restore_category&id=<?php echo $dm['id']; ?>')">Khôi phục</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -48,7 +55,7 @@
                         <td class="text-center align-middle"><?php echo $sp['ten_sp']; ?></td>
                         <td class="text-center align-middle"><?php echo number_format($sp['gia'], 0, ',', '.'); ?> đ</td>
                         <td class="text-center align-middle">
-                            <a href="index.php?act=restore_product&id=<?php echo $sp['id']; ?>" class="btn btn-sm btn-success" onclick="return confirm('Bạn có chắc muốn khôi phục sản phẩm này?')">Khôi phục</a>
+                            <a href="#" class="btn btn-sm btn-success" onclick="confirmRestore('index.php?act=restore_product&id=<?php echo $sp['id']; ?>')">Khôi phục</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -77,7 +84,7 @@
                         <td class="text-center align-middle"><?php echo htmlspecialchars($user['user_name']); ?></td>
                         <td class="text-center align-middle"><?php echo htmlspecialchars($user['email']); ?></td>
                         <td class="text-center align-middle">
-                            <a href="index.php?act=restore_user&id=<?php echo $user['id']; ?>" class="btn btn-sm btn-success" onclick="return confirm('Bạn có chắc muốn khôi phục người dùng này?')">Khôi phục</a>
+                            <a href="#" class="btn btn-sm btn-success" onclick="confirmRestore('index.php?act=restore_user&id=<?php echo $user['id']; ?>')">Khôi phục</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -110,7 +117,7 @@
                         <td class="text-center align-middle"><?php echo $review['danh_gia']; ?> sao</td>
                         <td class="text-center align-middle"><?php echo htmlspecialchars($review['binh_luan']); ?></td>
                         <td class="text-center align-middle">
-                            <a href="index.php?act=restore_review&id=<?php echo $review['id']; ?>" class="btn btn-sm btn-success" onclick="return confirm('Bạn có chắc muốn khôi phục đánh giá này?')">Khôi phục</a>
+                            <a href="#" class="btn btn-sm btn-success" onclick="confirmRestore('index.php?act=restore_review&id=<?php echo $review['id']; ?>')">Khôi phục</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

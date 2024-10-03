@@ -38,8 +38,7 @@ CREATE TABLE `category` (
 -- Đang đổ dữ liệu cho bảng `category`
 --
 
-INSERT INTO `category` (`id`, `ten_danh_muc`, `hien_thi_dm`, `parent_id`) VALUES
-(122, 'Panasonic', 1, 0);
+
 
 -- --------------------------------------------------------
 
@@ -99,11 +98,7 @@ CREATE TABLE `products` (
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT INTO `products` (`id`, `ten_sp`, `mo_ta_sp`, `gia`, `so_luong_hang`, `id_danh_muc`, `images`, `hien_thi_sp`, `cong_suat`, `cong_nghe`, `chat_lieu`, `chuc_nang`, `so_canh`, `toc_do`, `ngay_dang`, `new_arrival`, `featured`, `best_seller`) VALUES
-(110, 'quạt vn', 'ádasfsdfsdf', 500000, 55, 122, '[\"..\\/upload\\/66fcd83e4833c.png\",\"..\\/upload\\/66fcd83e48448.png\",\"..\\/upload\\/66fcd83e48527.png\",\"..\\/upload\\/66fcd83e485f7.png\",\"..\\/upload\\/66fcd83e486c0.png\",\"..\\/upload\\/66fcd83e487dc.png\"]', 1, '10w', 'ko', 'nhựa', 'quay ', '5', '1213km', '2024-10-02 05:21:02', 0, 1, 0),
-(111, 'photo', 'ádasfsdfsdf', 500000, 55, 122, '[\"..\\/upload\\/66fcd8788dbe8.png\",\"..\\/upload\\/66fcd8788dd1b.png\",\"..\\/upload\\/66fcd8788de0b.png\",\"..\\/upload\\/66fcd8788df36.png\",\"..\\/upload\\/66fcd8788e037.png\",\"..\\/upload\\/66fcd8788e110.png\"]', 1, '50w', 'sdfg', 'SẮT', 'quayfad ', '4', '1150km', '2024-10-02 05:22:00', 0, 0, 1),
-(112, 'photoầ', 'ádadfsdf', 300, 555, 122, '[\"..\\/upload\\/66fcd89d1d0f3.png\",\"..\\/upload\\/66fcd89d1d207.png\",\"..\\/upload\\/66fcd89d1d2ee.png\",\"..\\/upload\\/66fcd89d1d3c2.png\",\"..\\/upload\\/66fcd89d1d490.png\",\"..\\/upload\\/66fcd89d1d55b.png\"]', 1, '5w', 'sdfg', 'SẮT', 'quay ', '6', '1120km', '2024-10-02 05:22:37', 1, 0, 0),
-(113, 'FAA-43', 'ầdfsdfsdfÁ', 200, 50, 122, '[\"..\\/upload\\/66fcda4dbc4da.png\",\"..\\/upload\\/66fcda4dbc5ee.png\",\"..\\/upload\\/66fcda4dbc6ef.png\",\"..\\/upload\\/66fcda4dbc7db.png\",\"..\\/upload\\/66fcda4dbc928.png\",\"..\\/upload\\/66fcda4dbca0d.png\"]', 1, '5w', 'sdfg', 'sắt', 'quayfad ', '6', '1120km', '2024-10-02 05:29:49', 0, 1, 0);
+
 
 -- --------------------------------------------------------
 
@@ -140,9 +135,7 @@ CREATE TABLE `user` (
 -- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `role`, `hien_thi_user`) VALUES
-(3, 'admin', '$2y$10$iJud82D7gL8trEafQOEiveq7PwvfvYHPyIV8R2fA.n1DKsWHyjyBq', 'm1@gmail.com', 0, 1),
-(17, 'ductu', '$2y$10$LsT7NmNUsy7L1ma0QfMUpu9Of9yucHOGaYNniK44o/6ABrtjqWkvC', 'm1@gmail.com', 1, 1);
+
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -198,7 +191,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT cho bảng `chi_tiet_orders`
@@ -216,19 +209,19 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT cho bảng `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

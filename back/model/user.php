@@ -1,6 +1,4 @@
 <?php
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/fanimation/database/connect_db.php';
-
 function add_user($username, $password, $email) {
     $conn = connect_db();
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);

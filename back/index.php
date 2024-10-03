@@ -22,6 +22,8 @@ if (isset($_GET['act'])) {
                 $ten_danh_muc = $_POST['ten_danh_muc'];
                 $parent_id = $_POST['parent_id'];
                 add_category($ten_danh_muc, $parent_id);
+                
+                $_SESSION['success'] = "Thêm danh mục thành công!";
             }
             header("Location: index.php?act=danh_muc");
             break;
@@ -37,7 +39,10 @@ if (isset($_GET['act'])) {
                 $id = $_POST['id'];
                 $ten_danh_muc = $_POST['ten_danh_muc'];
                 $parent_id = $_POST['parent_id'];
+                
                 update_category($id, $ten_danh_muc, $parent_id);
+                
+                $_SESSION['success'] = "Cập nhật danh mục thành công!";
                 header("Location: index.php?act=danh_muc");
             }
             break;
@@ -46,6 +51,8 @@ if (isset($_GET['act'])) {
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
                 delete_category($id);
+                // Thiết lập thông báo xóa thành công
+                $_SESSION['success'] = "Xóa danh mục thành công!";
             }
             header("Location: index.php?act=danh_muc");
             break;
@@ -54,8 +61,9 @@ if (isset($_GET['act'])) {
             if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 restore_category($id);
+                $_SESSION['success'] = "Khôi phục danh mục thành công!"; // Thêm thông báo thành công
             }
-            header("Location: index.php?act=muc_an.php");
+            header("Location: index.php?act=muc_an.php"); // Chuyển hướng về trang mục ẩn
             break;
 
         case 'san_pham':
@@ -109,6 +117,9 @@ if (isset($_GET['act'])) {
                 // Gọi hàm insert_product với các tham số
                 insert_product($id_danh_muc, $ten_sp, $gia, $so_luong_hang, $mo_ta_sp, $images, $cong_suat, $cong_nghe, $chat_lieu, $chuc_nang, $so_canh, $toc_do, $new_arrival, $featured, $best_seller);
                 header("Location: index.php?act=san_pham");
+                $_SESSION['success'] = "Thêm sản phẩm thành công!";
+                header("Location: index.php?act=san_pham");
+                exit(); // Dừng thực thi để tránh gửi thêm thông báo
             }
             break;
 
@@ -157,9 +168,12 @@ if (isset($_GET['act'])) {
                 
                 $images_json = !empty($images) ? json_encode($images) : "";
                 
-                // Gọi hàm update_product với các tham số
+               
                 update_product($id, $ten_sp, $gia, $so_luong_hang, $mo_ta_sp, $id_danh_muc, $cong_suat, $cong_nghe, $chat_lieu, $chuc_nang, $so_canh, $toc_do, $images_json, $new_arrival, $featured, $best_seller);
                 header("Location: index.php?act=san_pham");
+                $_SESSION['success'] = "Cập nhật sản phẩm thành công!";
+                header("Location: index.php?act=san_pham");
+                exit();
             }
             break;
 
@@ -167,6 +181,7 @@ if (isset($_GET['act'])) {
             if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_product($id);
+                $_SESSION['success'] = "Ẩn sản phẩm thành công!";
             }
             header("Location: index.php?act=san_pham");
             break;
@@ -175,8 +190,9 @@ if (isset($_GET['act'])) {
             if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 restore_product($id);
+                $_SESSION['success'] = "Khôi phục sản phẩm thành công!"; // Thêm thông báo thành công
             }
-            header("Location: index.php?act=muc_an.php");
+            header("Location: index.php?act=muc_an.php"); // Chuyển hướng về trang mục ẩn
             break;
 
         case 'them_nguoi_dung':
@@ -187,14 +203,14 @@ if (isset($_GET['act'])) {
                 $email = $_POST['email'];
                     
                 if($password !== $confirm_password) {
-                    $error = "Mật khẩu và xác nhận mật khẩu không khớp!";
+                    $_SESSION['error'] = "Mật khẩu và xác nhận mật khẩu không khớp!";
                 } else {
                     $result = add_user($username, $password, $email);
                         
                     if($result) {
-                        $success = "Thêm người dùng thành công!";
+                        $_SESSION['success'] = "Thêm người dùng thành công!";
                     } else {
-                        $error = "Có lỗi xảy ra khi thêm người dùng!";
+                        $_SESSION['error'] = "Có lỗi xảy ra khi thêm người dùng!";
                     }
                 }
             }
@@ -215,8 +231,9 @@ if (isset($_GET['act'])) {
             if(isset($_GET['id'])) {
                 $id = $_GET['id'];
                 restore_user($id);
+                $_SESSION['success'] = "Khôi phục người dùng thành công!"; // Thêm thông báo thành công
             }
-            header("Location: index.php?act=hidden_items");
+            header("Location: index.php?act=hidden_items"); // Chuyển hướng về trang mục ẩn
             break;
 
         case 'hidden_items':

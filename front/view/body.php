@@ -41,7 +41,9 @@
                         $images = json_decode($product['images'], true);
                         $first_image = $images[0] ?? '/img/default-product.jpg';
                         ?>
-                        <img src="<?php echo $first_image; ?>" alt="<?php echo htmlspecialchars($product['ten_sp']); ?>">
+                        <a href="http://localhost/fanimation/front/view/pd_detail.php?id=<?php echo $product['id']; ?>">
+                            <img src="<?php echo $first_image; ?>" alt="<?php echo htmlspecialchars($product['ten_sp']); ?>">
+                        </a>
                         <div class="price"><?php echo number_format($product['gia'], 0, ',', '.'); ?>₫</div>
                         <div class="image-icon"><i class="fa-regular fa-heart"></i></div>
                     </div>
@@ -97,7 +99,9 @@
                     $images = json_decode($product['images'], true);
                     $first_image = $images[0] ?? '/img/default-product.jpg';
                     ?>
-                    <img src="<?php echo $first_image; ?>" alt="<?php echo htmlspecialchars($product['ten_sp']); ?>">
+                    <a href="pd_detail.php?id=<?php echo $product['id']; ?>">
+                        <img src="<?php echo $first_image; ?>" alt="<?php echo htmlspecialchars($product['ten_sp']); ?>">
+                    </a>
                     <div class="price"><?php echo number_format($product['gia'], 0, ',', '.'); ?>₫</div>
                     <div class="image-icon"><i class="fa-regular fa-heart"></i></div>
                 </div>
@@ -134,7 +138,9 @@
                     $images = json_decode($product['images'], true);
                     $first_image = $images[0] ?? '/img/default-product.jpg';
                     ?>
-                    <img src="<?php echo $first_image; ?>" alt="<?php echo htmlspecialchars($product['ten_sp']); ?>">
+                    <a href="pd_detail.php?id=<?php echo $product['id']; ?>">
+                        <img src="<?php echo $first_image; ?>" alt="<?php echo htmlspecialchars($product['ten_sp']); ?>">
+                    </a>
                     <div class="price"><?php echo number_format($product['gia'], 0, ',', '.'); ?>₫</div>
                     <div class="image-icon"><i class="fa-regular fa-heart"></i></div>
                 </div>
@@ -157,68 +163,113 @@
     <div class="inside-below-1">
         <h1>STORIES, STYLES AND SPORTSWEAR AT ADIDAS, SINCE 1949</h1>
         <p>Sport keeps us fit. Keeps you mindful. Brings us together. Through sport we have the power to change lives. Whether it is through stories of inspiring athletes. Helping you to get up and get moving. Sportswear featuring the latest technologies, to up your performance. Beat your PB.adidas offers a home to the runner, the basketball player, the soccer kid, the fitness enthusiast. The weekend hiker that loves to escape the city. The yoga teacher that spreads the moves. The 3-Stripes are seen in the music scene. On stage, at festivals. Our sports clothing keeps you focused before that whistle blows. During the race. And at the finish lines. We’re here to support creators. Improve their game. Their lives. And change the world.
+
         <br>
+
         <br>
+
         adidas is about more than sportswear and workout clothes. We partner with the best in the industry to co-create. This way we offer our fans the sports apparel and style that match their athletic needs, while keeping sustainability in mind. We’re here to support creators. Improve their game. Create change. And we think about the impact we have on our world.
+
         </p>
+
         <div>
+
             <img src="/img/adidas_logo_white.jpg" alt="">
+
         </div>
     </div>
 </div>
 
+
 <div class="below-mobile-1">
+
     <h5>YOUR OPINION COUNTS</h5>
     <p>We strive to serve you better and appreciate your feedback</p>
+
     <a href="#">Please fill out this short survey.</a>
+
 </div>
 
+
 <div class="below-mobile-2">
+
     <i class="fa-solid fa-chevron-up"></i>
+
     <p>BACK TO TOP</p>
+
 </div>
 
 <div class="below-mobile-3">
+
     <a href="#">LOGIN</a>
+
     <a href="#">YOUR BAG(0)</a>
 </div>
 
+
 <div class="below-2 ">
+
     <h1>BECOME A MEMBER & GET 15% OFF</h1>
+
     <div class="below-2-button">
+
         <a href="#">SIGN UP FOR FREE <i class="fa fa-arrow-right"></i></a>
+
     </div>
 </div>
 
+
 <div class="below-3">
+
     <div class="column">
         <h5>PRODUCTS</h5>
+
         <ul>
+
             <li><a href="#">Footwear</a></li>
+
             <li><a href="#">Clothing</a></li>
+
             <li><a href="#">Accessories</a></li>
             <li><a href="#">New Arrivals</a></li>
             <li><a href="#">Release Dates</a></li>
+
             <li><a href="#">Top Sellers</a></li>
+
             <li><a href="#">Member Exclusives</a></li>
+
             <li><a href="#">Outlet</a></li>
         </ul>
+
     </div>
+
     <div class="column">
         <h5>SPORTS</h5>
+
         <ul>
+
             <li><a href="#">Running</a></li>
+
             <li><a href="#">Golf</a></li>
+
             <li><a href="#">Gym & Training</a></li>
+
             <li><a href="#">Football</a></li>
+
             <li><a href="#">Basketball</a></li>
+
             <li><a href="#">Tennis</a></li>
             <li><a href="#">Outdoor</a></li>
             <li><a href="#">Swimming</a></li>
+
         </ul>
+
     </div>
+
     <div class="column">
         <h5>COLLECTIONS</h5>
+
         <ul>
             <li><a href="#">Pharrell Williams</a></li>
+
             <li><a

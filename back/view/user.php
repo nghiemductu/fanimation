@@ -1,12 +1,15 @@
 <h1 class="mb-4 text-center pt-4">Thêm Người Dùng Mới</h1>
 <div class="row justify-content-center">
     <div class="col-md-3">
-        <?php if(isset($error)): ?>
+        <?php if (isset($error)): ?>
             <div class="alert alert-danger"><?php echo $error; ?></div>
         <?php endif; ?>
 
-        <?php if(isset($success)): ?>
-            <div class="alert alert-success"><?php echo $success; ?></div>
+        <?php if (isset($_SESSION['success'])): ?>
+            <script>
+                showSuccessAlert("Thành công!", "<?php echo $_SESSION['success']; ?>");
+            </script>
+            <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
 
         <form action="index.php?act=them_nguoi_dung" method="POST" class="mb-5">
@@ -47,7 +50,7 @@
                 <td class="text-center align-middle"><?php echo htmlspecialchars($user['user_name']); ?></td>
                 <td class="text-center align-middle"><?php echo htmlspecialchars($user['email']); ?></td>
                 <td class="text-center align-middle">
-                    <a href="index.php?act=hide_user&id=<?php echo $user['id']; ?>" class="btn btn-warning btn-sm" onclick="return confirm('Bạn có chắc muốn ẩn người dùng này?')">Ẩn</a>
+                    <a href="#" class="btn btn-warning btn-sm" onclick="confirmHideUser('<?php echo $user['id']; ?>')">Ẩn</a>
                 </td>
             </tr>
             <?php endforeach; ?>

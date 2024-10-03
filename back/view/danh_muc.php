@@ -1,14 +1,21 @@
 <div class="container-fluid flex-grow-1 pt-4">
-    <h1 class="mb-4 text-center">Quản lý Danh mục</h1>
+    <h1 class="mb-4 text-center">Category Management</h1>
+
+    <?php if (isset($_SESSION['success'])): ?>
+        <script>
+            showSuccessAlert("Success!", "<?php echo $_SESSION['success']; ?>");
+        </script>
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
 
     <form action="index.php?act=adding_category" method="post" class="category-form mb-4">
         <div class="row justify-content-center">
             <div class="col-md-2 mb-3">
-                <input type="text" class="form-control" name="ten_danh_muc" placeholder="Tên danh mục" required>
+                <input type="text" class="form-control" name="ten_danh_muc" placeholder="Category name" required>
             </div>
             <div class="col-md-2 mb-3">
                 <select class="form-control" name="parent_id">
-                    <option value="0">Danh mục gốc</option>
+                    <option value="0">Original catalog</option>
                     <?php
                     function buildCategoryOptions($categories, $parent_id = 0, $level = 0) {
                         $result = '';
@@ -26,20 +33,17 @@
             </div>
         </div>
         <div class="text-center mb-3">
-            <button type="submit" name="add_new" class="btn btn-primary">Thêm mới</button>
+            <button type="submit" name="add_new" class="btn btn-primary">Add new</button>
         </div>
     </form>
 
-    
-</div>
-
-<div class="table-responsive">
+    <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered w-50 mx-auto">
             <thead class="thead-striped">
                 <tr>
-                    <th class="text-center" style="width: 15%">STT</th>
-                    <th class="text-center" style="width: 55%">Tên danh mục</th>
-                    <th class="text-center" style="width: 30%">Hành động</th>
+                    <th class="text-center" style="width: 15%">SN</th>
+                    <th class="text-center" style="width: 55%">Category name</th>
+                    <th class="text-center" style="width: 30%">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,7 +53,7 @@
                     foreach ($categories as $dm) {
                         if ($dm['parent_id'] == $parent_id) {
                             $bg_class = $level == 0 ? 'table-primary' : '';
-                            $padding_left = 15 * $level; // 15px padding for each level
+                            $padding_left = 40 * $level; // 15px padding for each level
                             echo '<tr class="' . $bg_class . '">
                                     <td class="text-center align-middle">' . $stt++ . '</td>
                                     <td class="text-center align-middle">
@@ -58,8 +62,8 @@
                                         </div>
                                     </td>
                                     <td class="text-center align-middle">
-                                        <a href="index.php?act=update_category&id=' . $dm['id'] . '" class="btn btn-sm btn-warning mr-1">Sửa</a>
-                                        <a href="index.php?act=delete_category&id=' . $dm['id'] . '" class="btn btn-sm btn-danger" onclick="return confirm(\'Khi xóa bạn cần chắc chắn danh mục không còn chứa DỮ LIỆU SẢN PHẨM. Bạn có chắc muốn xóa danh mục này?\')">Ẩn</a>
+                                        <a href="index.php?act=update_category&id=' . $dm['id'] . '" class="btn btn-sm btn-warning w-25">Fix</a>
+                                        <a href="#" class="btn btn-sm btn-danger" onclick="confirmDelete(function() { window.location.href=\'index.php?act=delete_category&id=' . $dm['id'] . '\'; })">Hidden</a>
                                     </td>
                                   </tr>';
                             displayCategories($categories, $dm['id'], $level + 1, $stt);

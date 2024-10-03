@@ -21,4 +21,12 @@
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-?>
+
+    function get_product($id) {
+        $conn = connect_db();
+        $stmt = $conn->prepare("SELECT * FROM products WHERE id = :id AND hien_thi_sp = 1");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    ?>

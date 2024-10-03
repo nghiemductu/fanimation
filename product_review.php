@@ -5,7 +5,7 @@ require_once 'back/model/review.php';
 require_once 'back/model/user.php';  
 
 
-$product_id = 171;
+$product_id = 1;
 $username = 'ductu';
 
 // Lấy thông tin sản phẩm

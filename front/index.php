@@ -11,10 +11,18 @@ $categories = get_categories_hierarchical();
 
 include 'view/header.php'; 
 
-// Khởi tạo biến để lưu sản phẩm
+
 $new_arrivals = [];
 $featured_products = [];
 $best_sellers = [];
+
+
+if (isset($_GET['id'])) {
+    $product_id = $_GET['id'];
+    $product = get_product($product_id); 
+    include 'view/pd_detail.php'; 
+    exit; 
+}
 
 
 if (isset($_POST['filter'])) {
@@ -28,11 +36,11 @@ if (isset($_POST['filter'])) {
         $best_sellers = get_best_sellers(); 
     }
 } else {
-    
     $new_arrivals = get_new_arrivals(11); 
 }
 
-if (isset($_GET['act']) && ($_GET['act'] == 'login' || $_GET['act'] == 'register')) {
+
+if (isset($_GET['act'])) {
     switch ($_GET['act']) {
         case 'login':
             include 'view/login.php';  
@@ -41,21 +49,17 @@ if (isset($_GET['act']) && ($_GET['act'] == 'login' || $_GET['act'] == 'register
         case 'register':
             include 'view/register.php';  
             break;
+
+        case 'body':
+            include 'view/body.php'; 
+            break;  
+
+        default:
+            include 'view/body.php'; 
+            break;
     }
 } else {
-    if (isset($_GET['act'])) {
-        switch ($_GET['act']) {
-            case 'body':
-                include 'view/body.php'; // Gọi view body
-                break;  
-            
-            default:
-                include 'view/body.php'; // Gọi view body
-                break;
-        }
-    } else {
-        include 'view/body.php'; // Gọi view body
-    }
+    include 'view/body.php'; 
 }
 
 include 'view/footer.php';  

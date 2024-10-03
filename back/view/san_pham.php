@@ -1,6 +1,13 @@
 <div class="container-fluid flex-grow-1 pt-4">
     <h1 class="mb-4 text-center">Quản lý sản phẩm</h1>
 
+    <?php if (isset($_SESSION['success'])): ?>
+        <script>
+            showSuccessAlert("Thành công!", "<?php echo $_SESSION['success']; ?>");
+        </script>
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
+
     <form action="index.php?act=add_san_pham" method="post" enctype="multipart/form-data" class="mb-4" id="productForm">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -67,77 +74,76 @@
     </form>
 
     <table class="table table-striped">
-    <thead>
-        <tr class="text-center">
-            <th>STT</th>
-            <th>Tên sản phẩm</th>
-            <th>Hình ảnh</th>
-            <th>Danh mục</th>
-            <th>Giá</th>
-            <th>Số lượng</th>
-            <th>Mô tả</th>
-            <th>Thông số kỹ thuật</th>
-            <th>Ngày đăng</th>
-            <th>Trạng thái</th> <!-- Thêm cột trạng thái -->
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-<?php
-if(isset($kq) && (count($kq) > 0)){
-    $start_index = ($current_page - 1) * $items_per_page;
-    foreach ($kq as $index => $item){
-        $stt = $start_index + $index + 1;
-        $ten_danh_muc = '';
-        foreach ($dsdm as $dm) {
-            if ($dm['id'] == $item['id_danh_muc']) {
-                $ten_danh_muc = $dm['ten_danh_muc'];
-                break;
+        <thead>
+            <tr class="text-center">
+                <th>STT</th>
+                <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Danh mục</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Mô tả</th>
+                <th>Thông số kỹ thuật</th>
+                <th>Ngày đăng</th>
+                <th>Trạng thái</th> <!-- Thêm cột trạng thái -->
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        if(isset($kq) && (count($kq) > 0)){
+            $start_index = ($current_page - 1) * $items_per_page;
+            foreach ($kq as $index => $item){
+                $stt = $start_index + $index + 1;
+                $ten_danh_muc = '';
+                foreach ($dsdm as $dm) {
+                    if ($dm['id'] == $item['id_danh_muc']) {
+                        $ten_danh_muc = $dm['ten_danh_muc'];
+                        break;
+                    }
+                }
+
+                $status = [];
+                if ($item['new_arrival']) {
+                    $status[] = 'New Arrivals';
+                }
+                if ($item['featured']) {
+                    $status[] = 'Featured Products';
+                }
+                if ($item['best_seller']) {
+                    $status[] = 'Best Sellers';
+                }
+                $status_display = !empty($status) ? implode(', ', $status) : 'New Arrivals';
+
+                echo '<tr class="text-center">
+                        <td class="align-middle">'.$stt.'</td>
+                        <td class="align-middle">'.$item['ten_sp'].'</td>
+                        <td class="align-middle">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#imageModal'.$item['id'].'">
+                                Xem ảnh
+                            </button>
+                        </td>
+                        <td class="align-middle">'.$ten_danh_muc.'</td>
+                        <td class="align-middle">'.number_format($item['gia'], 0, ',', '.').' đ</td>
+                        <td class="align-middle">'.$item['so_luong_hang'].'</td>
+                        <td class="align-middle">'.substr($item['mo_ta_sp'], 0, 50).'...</td>
+                        <td class="align-middle">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#specModal'.$item['id'].'">
+                                Xem chi tiết
+                            </button>
+                        </td>
+                        <td class="align-middle">'.$item['ngay_dang'].'</td>
+                        <td class="align-middle">'.$status_display.'</td> <!-- Hiển thị trạng thái -->
+                        <td class="align-middle">
+                            <div class="d-flex flex-column align-items-center">
+                                <a href="index.php?act=update_san_pham&id='.$item['id'].'" class="btn btn-sm btn-warning mb-2 w-50" onclick="return confirmEdit()">Sửa</a>
+                                <a href="#" class="btn btn-sm btn-danger w-50" onclick="confirmDelete(function() { window.location.href=\'index.php?act=delete_product&id='.$item['id'].'\'; })">Ẩn</a>
+                            </div>
+                        </td>
+                      </tr>';
             }
         }
-
-        // Xác định trạng thái sản phẩm
-        $status = [];
-        if ($item['new_arrival']) {
-            $status[] = 'New Arrivals';
-        }
-        if ($item['featured']) {
-            $status[] = 'Featured Products';
-        }
-        if ($item['best_seller']) {
-            $status[] = 'Best Sellers';
-        }
-        $status_display = !empty($status) ? implode(', ', $status) : 'New Arrivals';
-
-        echo '<tr class="text-center">
-                    <td class="align-middle">'.$stt.'</td>
-                    <td class="align-middle">'.$item['ten_sp'].'</td>
-                    <td class="align-middle">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#imageModal'.$item['id'].'">
-                            Xem ảnh
-                        </button>
-                    </td>
-                    <td class="align-middle">'.$ten_danh_muc.'</td>
-                    <td class="align-middle">'.number_format($item['gia'], 0, ',', '.').' đ</td>
-                    <td class="align-middle">'.$item['so_luong_hang'].'</td>
-                    <td class="align-middle">'.substr($item['mo_ta_sp'], 0, 50).'...</td>
-                    <td class="align-middle">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#specModal'.$item['id'].'">
-                            Xem chi tiết
-                        </button>
-                    </td>
-                    <td class="align-middle">'.$item['ngay_dang'].'</td>
-                    <td class="align-middle">'.$status_display.'</td> <!-- Hiển thị trạng thái -->
-                    <td class="align-middle">
-                        <div class="d-flex flex-column align-items-center">
-                            <a href="index.php?act=update_san_pham&id='.$item['id'].'" class="btn btn-sm btn-warning mb-2 w-50">Sửa</a>
-                            <a href="index.php?act=delete_product&id='.$item['id'].'" class="btn btn-sm btn-danger w-50" onclick="return confirm(\'Bạn có chắc muốn ẩn sản phẩm này?\')">Ẩn</a>
-                        </div>
-                    </td>
-              </tr>';
-        }
-    }
-?>
+        ?>
         </tbody>
     </table>
 
@@ -219,4 +225,3 @@ if(isset($kq) && (count($kq) > 0)){
     echo renderPagination($current_page, $total_pages, '?act=san_pham&page=%d');
 ?>
 <script src="http://localhost/fanimation/public/JS/back_product.js"></script>
-
