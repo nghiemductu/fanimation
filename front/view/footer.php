@@ -29,23 +29,6 @@
     </div>
 
 
-<div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="signInModalLabel">Sign In Required</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                You must sign in or register to perform this action.
-            </div>
-            <div class="modal-footer">
-                <a href="login.html" class="btn btn-primary">Sign In</a>
-                <a href="register.html" class="btn btn-secondary">Register</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!-- Modal for Sign-In Prompt -->

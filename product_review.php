@@ -6,7 +6,7 @@ require_once 'back/model/user.php';
 
 
 $product_id = 1;
-$username = 'ductu';
+$username = 'tu12';
 
 // Lấy thông tin sản phẩm
 $product = get_product($product_id);

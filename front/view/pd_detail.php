@@ -42,7 +42,7 @@
 
     <div class="container mt-5">
         <?php
-        // Lấy thông tin sản phẩm từ ID
+       
             if (isset($product)) {
                 $images = json_decode($product['images'], true);
                 $first_image = $images[0] ?? '/img/default-product.jpg';

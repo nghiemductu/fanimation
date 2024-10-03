@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php if (isset($success)): ?>
                             <div class="alert alert-success"><?php echo $success; ?></div>
                         <?php endif; ?>
-                        <form action="index.php?act=register" method="post" id="registerForm">
+                        <form action="http://localhost:3000/front/index.php?act=register" method="post" id="registerForm">
                             <div class="mb-3">
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" required>
                             </div>

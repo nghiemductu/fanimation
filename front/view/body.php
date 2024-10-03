@@ -41,7 +41,7 @@
                         $images = json_decode($product['images'], true);
                         $first_image = $images[0] ?? '/img/default-product.jpg';
                         ?>
-                        <a href="http://localhost/fanimation/front/view/pd_detail.php?id=<?php echo $product['id']; ?>">
+                        <a href="http://localhost:3000/front/index.php?act=pd_detail.php<?php echo $product['id']; ?>">
                             <img src="<?php echo $first_image; ?>" alt="<?php echo htmlspecialchars($product['ten_sp']); ?>">
                         </a>
                         <div class="price"><?php echo number_format($product['gia'], 0, ',', '.'); ?>₫</div>
